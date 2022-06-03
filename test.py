@@ -1,36 +1,56 @@
-#a = [4,6,2,3,6,7,55.4,9]
-#a.sort(reverse=True)
-#new_items = [item for item in a if int(item) == item]
-#print (new_items)
-#b=a[0:3]
-#print(a)
+def spiralMatrixPrint(row, col, arr):
+    # Defining the boundaries of the matrix.
+    top = 0
+    bottom = row - 1
+    left = 0
+    right = col - 1
 
-"""b = [44,55,666777.55,33,1,2,4,6]
-b.sort(reverse=True)
-#print(b)
-for i in b:
-    #print(i)
-    try:
-        new_items = [item for item in b if int(item)]
-        print(new_items)
-    except:
-        continue"""
-import numpy as np
-'''a = 5
-zeros_array = np.zeros((a,a))
-for i in zeros_array:
-    x = 1
-    x += zeros_array[i]
-print(zeros_array'''
-"""a = 4
-array_1 = []
-for i in range(a):
-    array_1[i] = array_1[i] + i
-print (array_1)"""
+    # Defining the direction in which the array is to be traversed.
+    dir = 0
 
-"""a = [4, 5555, 3, 2211.22, 3456, 443.33,'apple']
-non_include = [x for x in a if not isinstance(x, int)]
-"""for i in a:
-    if str(i):
-        non_include.append(i)"""
-print(non_include)"""
+    while (top <= bottom and left <= right):
+        if dir == 0:
+            for i in range(left, right + 1):  # moving left->right
+                print(arr[top][i], end=" ")
+
+            # Since we have traversed the whole first
+            # row, move down to the next row.
+            top += 1
+            dir = 1
+
+        elif dir == 1:
+            for i in range(top, bottom + 1):  # moving top->bottom
+                print(arr[i][right], end=" ")
+
+            # Since we have traversed the whole last
+            # column, move down to the previous column.
+            right -= 1
+            dir = 2
+
+        elif dir == 2:
+            for i in range(right, left - 1, -1):  # moving right->left
+                print(arr[bottom][i], end=" ")
+
+            # Since we have traversed the whole last
+            # row, move down to the previous row.
+            bottom -= 1
+            dir = 3
+
+        elif dir == 3:
+            for i in range(bottom, top - 1, -1):  # moving bottom->top
+                print(arr[i][left], end=" ")
+            # Since we have traversed the whole first
+            # column, move down to the next column.
+            left += 1
+            dir = 0
+
+
+# Driver code
+# Change the following array and the corresponding row and
+# column arguments to test on some other input
+array = [[1, 2, 3, 4],
+         [12, 13, 14, 5],
+         [11, 16, 15, 6],
+         [10, 9, 8, 7]]
+
+spiralMatrixPrint(4, 4, array)
