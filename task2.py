@@ -1,7 +1,17 @@
-listed_num = [1,2,3,4,5,6,7,8,9,10,33,54,453,666,254,2342,111,22]
-for x in listed_num:
-    mod = x % 2
-    if x == 254:
-        break
-    elif mod == 0:
-        print(x)
+def even_num(input_lst: list):
+    input_lst = list(input_lst)
+    input_lst_int = []
+    for i in input_lst:
+        input_lst_int.append(int(i))
+    output_lst = []
+    for x in input_lst_int:
+        mod = x % 2
+        if x == 254:
+            break
+        elif mod == 0:
+            output_lst.append(x)
+    print(output_lst)
+
+
+input_lst = input("Type sequence of comma-separated num: ").split(',')
+even_num(input_lst)
